@@ -1,0 +1,137 @@
+graph "Hadoop Family" {
+
+bgcolor=deepskyblue;
+graph [	
+  fontname = "Helvetica-Oblique",
+	fontsize = 36,
+	label = "\n\n\n\nHadoop Family\nRuss Ferriday, 2010",
+	size = "7,9",
+	K=4,
+	];
+node [	shape = oval,
+	color = white,
+	style = filled,
+	fontname = "Helvetica",
+	fontsize = 36,
+	];
+
+
+
+subgraph cluster_JobManagement {
+style=filled;
+color=lawngreen;
+fontname=Helvetica;
+node [style=filled,color=white];
+Oozie;
+label = "Job Management";
+}
+
+subgraph cluster_ingestion {
+style=filled;
+color=lawngreen;
+node [style=filled,color=white];
+Flume;
+label = "Streams, Ingestion";
+}
+
+subgraph cluster_JavaQueryAPI {
+style=filled;
+color=lawngreen;
+node [style=filled,color=white];
+Cascading;
+label = "Java Query API";
+}
+
+subgraph cluster_LogFileCollection {
+style=filled;
+color=lawngreen;
+node [style=filled,color=white];
+Scribe;
+label = "Log File Collection";
+}
+
+
+subgraph cluster_NoSQL {
+style=filled;
+color=lawngreen;
+node [style=filled,color=white];
+Cassandra;
+label = "Alternative Storage";
+}
+
+subgraph cluster_hadoop {
+style=filled;
+color=gray;
+node [style=filled,color=white];
+label = "Apache Hadoop";
+
+
+  subgraph cluster_HLQ {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  Pig;
+  label = "High Level Query";
+  }
+
+  subgraph cluster_Chukwa {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  Chukwa;
+  label = "Data Collection";
+  }
+  
+  subgraph cluster_HDFS {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  HDFS;
+  label = "Distributed File System";
+  }
+  
+  subgraph cluster_Chukwa {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  Chukwa;
+  label = "Data Collection";
+  }
+  
+  subgraph cluster_StructuredQueries {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  Hive;
+  label = "Structured Queries";
+  }
+  
+  subgraph cluster_MapReduce {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  MapReduce;
+  label = "Distributed Processing";
+  }
+  
+  subgraph cluster_Zookeeper {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  Zookeeper;
+  label = "Job Coordination";
+  }
+  
+}
+
+
+cluster_hadoop -- cluster_ingestion;
+cluster_hadoop -- cluster_JavaQueryAPI;
+cluster_hadoop -- cluster_LogFileCollection;
+cluster_hadoop -- cluster_JobManagement;
+cluster_hadoop -- cluster_NoSQL;
+
+cluster_hadoop [label="Hadoop",style=filled,color=white];
+	
+	
+}
