@@ -1,20 +1,21 @@
 graph "Hadoop Family" {
 
-bgcolor=deepskyblue;
+bgcolor=deepskyblue
+
 graph [	
   fontname = "Helvetica-Oblique",
-	fontsize = 36,
+	fontsize = 28,
 	label = "\n\n\n\nHadoop Family\nRuss Ferriday, 2010",
 	size = "7,9",
-	K=4,
+	K=2.5,
 	];
+
 node [	shape = oval,
 	color = white,
 	style = filled,
 	fontname = "Helvetica",
-	fontsize = 36,
+	fontsize = 34,
 	];
-
 
 
 subgraph cluster_JobManagement {
@@ -22,32 +23,32 @@ style=filled;
 color=lawngreen;
 fontname=Helvetica;
 node [style=filled,color=white];
-Oozie;
-label = "Job Management";
+Oozie[URL="http://yahoo.github.com/oozie/"];
+label = "Workflow Management";
 }
 
 subgraph cluster_ingestion {
 style=filled;
 color=lawngreen;
 node [style=filled,color=white];
-Flume;
 label = "Streams, Ingestion";
+Flume[URL="http://github.com/cloudera/flume"];
 }
 
 subgraph cluster_JavaQueryAPI {
 style=filled;
 color=lawngreen;
 node [style=filled,color=white];
-Cascading;
-label = "Java Query API";
+label = "Java DP and Query API";
+Cascading[URL="http://www.cascading.org/"];
 }
 
 subgraph cluster_LogFileCollection {
 style=filled;
 color=lawngreen;
 node [style=filled,color=white];
-Scribe;
 label = "Log File Collection";
+Scribe[URL="http://github.com/facebook/scribe"];
 }
 
 
@@ -55,73 +56,130 @@ subgraph cluster_NoSQL {
 style=filled;
 color=lawngreen;
 node [style=filled,color=white];
-Cassandra;
-label = "Alternative Storage";
+label = "Scalable Distributed Storage";
+Cassandra[URL="http://cassandra.apache.org/"];
 }
+
+subgraph cluster_HUE {
+style=filled;
+color=lawngreen;
+node [style=filled,color=white];
+label = "User Interface";
+Hue[URL="http://github.com/cloudera/hue"];
+}
+
+
+
 
 subgraph cluster_hadoop {
 style=filled;
 color=gray;
 node [style=filled,color=white];
 label = "Apache Hadoop";
+URL="http://hadoop.apache.org/"
 
 
   subgraph cluster_HLQ {
   style=filled;
   color=lawngreen;
   node [style=filled,color=white];
-  Pig;
   label = "High Level Query";
-  }
-
-  subgraph cluster_Chukwa {
-  style=filled;
-  color=lawngreen;
-  node [style=filled,color=white];
-  Chukwa;
-  label = "Data Collection";
+  Pig[URL="http://hadoop.apache.org/pig/"];
   }
   
   subgraph cluster_HDFS {
   style=filled;
   color=lawngreen;
   node [style=filled,color=white];
-  HDFS;
   label = "Distributed File System";
+  HDFS[URL="http://hadoop.apache.org/hdfs/"];
   }
   
   subgraph cluster_Chukwa {
   style=filled;
   color=lawngreen;
   node [style=filled,color=white];
-  Chukwa;
   label = "Data Collection";
+  Chukwa[URL="http://hadoop.apache.org/chukwa/"];
   }
   
   subgraph cluster_StructuredQueries {
   style=filled;
   color=lawngreen;
   node [style=filled,color=white];
-  Hive;
-  label = "Structured Queries";
+  label = "Data Warehousing,\nStructured Queries";
+  Hive[URL="http://hadoop.apache.org/hive/"];
   }
   
   subgraph cluster_MapReduce {
   style=filled;
   color=lawngreen;
   node [style=filled,color=white];
-  MapReduce;
   label = "Distributed Processing";
+  MapReduce[URL="http://hadoop.apache.org/mapreduce/"];
   }
   
   subgraph cluster_Zookeeper {
   style=filled;
   color=lawngreen;
   node [style=filled,color=white];
-  Zookeeper;
   label = "Job Coordination";
+  Zookeeper[URL="http://hadoop.apache.org/zookeeper/"];
   }
   
+  subgraph cluster_HadoopCommon {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  label = "Common Utilities";
+  HadoopCommon[label="Hadoop Common", URL="http://hadoop.apache.org/common/"];
+  }
+  
+  subgraph cluster_HBase {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  label = "Distributed Database";
+  HBase[URL="http://hbase.apache.org/"];
+  }
+  
+  subgraph cluster_Avro {
+  style=filled;
+  color=lawngreen;
+  node [style=filled,color=white];
+  label = "Data Serialization";
+  Avro[URL="http://avro.apache.org/"];
+  }
+   
+}
+
+subgraph cluster_monitoring {
+style=filled;
+color=yellow;
+node [style=filled,color=white];
+label = "Monitoring, Alerting, Metrics";
+Ganglia[URL="http://ganglia.sourceforge.net/"];
+Nagios[URL="http://www.nagios.org/"];
+Zenoss[URL="http://www.zenoss.com/"]
+}
+
+subgraph cluster_bootstrapping {
+style=filled;
+color=red;
+node [style=filled,color=white];
+label = "Bootstrapping";
+Libcloud;
+Puppet;
+Kickstart;
+}
+
+subgraph cluster_HA {
+style=filled;
+color=orange;
+node [style=filled,color=white];
+label = "High Availability";
+DRBD;
+Heartbeat;
 }
 
 
@@ -132,6 +190,11 @@ cluster_hadoop -- cluster_JobManagement;
 cluster_hadoop -- cluster_NoSQL;
 
 cluster_hadoop [label="Hadoop",style=filled,color=white];
-	
-	
+
+cluster_hadoop -- cluster_monitoring;
+cluster_hadoop -- cluster_bootstrapping;
+cluster_hadoop -- cluster_HA;
+cluster_hadoop -- cluster_HUE;
+
+
 }
