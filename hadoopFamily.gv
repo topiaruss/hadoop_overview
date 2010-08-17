@@ -1,26 +1,30 @@
-graph "Hadoop Family" {
+graph "Hadoop and Friends" {
 
 bgcolor=deepskyblue
+bgcolor=dodgerblue
+
 
 graph [	
   fontname = "Helvetica-Oblique",
 	fontsize = 28,
-	label = "\n\n\n\nHadoop Family\nRuss Ferriday, 2010",
+	label = "\n\n\n\nHadoop and Friends\nRuss Ferriday, 2010\nrussf@topia.com",
 	size = "7,9",
-	K=2.5,
+	K=2,
 	];
 
 node [	shape = oval,
 	color = white,
 	style = filled,
 	fontname = "Helvetica",
-	fontsize = 34,
+	fontsize = 40,
 	];
 
 
 subgraph cluster_JobManagement {
 style=filled;
-color=lawngreen;
+penwidth = 6;
+color=yellow;
+fillcolor = "lawngreen";
 fontname=Helvetica;
 node [style=filled,color=white];
 Oozie[URL="http://yahoo.github.com/oozie/"];
@@ -29,7 +33,9 @@ label = "Workflow Management";
 
 subgraph cluster_ingestion {
 style=filled;
-color=lawngreen;
+penwidth = 6;
+color=cyan;
+fillcolor=lawngreen;
 node [style=filled,color=white];
 label = "Streams, Ingestion";
 Flume[URL="http://github.com/cloudera/flume"];
@@ -45,7 +51,9 @@ Cascading[URL="http://www.cascading.org/"];
 
 subgraph cluster_LogFileCollection {
 style=filled;
-color=lawngreen;
+penwidth = 6;
+color=fuchsia;
+fillcolor=lawngreen;
 node [style=filled,color=white];
 label = "Log File Collection";
 Scribe[URL="http://github.com/facebook/scribe"];
@@ -54,7 +62,9 @@ Scribe[URL="http://github.com/facebook/scribe"];
 
 subgraph cluster_NoSQL {
 style=filled;
-color=lawngreen;
+penwidth = 6;
+color=fuchsia;
+fillcolor=lawngreen;
 node [style=filled,color=white];
 label = "Scalable Distributed Storage";
 Cassandra[URL="http://cassandra.apache.org/"];
@@ -62,7 +72,9 @@ Cassandra[URL="http://cassandra.apache.org/"];
 
 subgraph cluster_HUE {
 style=filled;
-color=lawngreen;
+penwidth = 6;
+color=cyan;
+fillcolor = "lawngreen";
 node [style=filled,color=white];
 label = "User Interface";
 Hue[URL="http://github.com/cloudera/hue"];
@@ -168,9 +180,9 @@ style=filled;
 color=red;
 node [style=filled,color=white];
 label = "Bootstrapping";
-Libcloud;
-Puppet;
-Kickstart;
+Libcloud[URL="http://incubator.apache.org/libcloud/"];
+Puppet[URL="http://www.puppetlabs.com/"];
+Kickstart[URL="http://fedoraproject.org/wiki/Anaconda/Kickstart"];
 }
 
 subgraph cluster_HA {
@@ -178,8 +190,8 @@ style=filled;
 color=orange;
 node [style=filled,color=white];
 label = "High Availability";
-DRBD;
-Heartbeat;
+DRBD[URL="http://www.drbd.org/"];
+Heartbeat[URL="http://linux-ha.org/wiki/Heartbeat"];
 }
 
 
@@ -195,6 +207,5 @@ cluster_hadoop -- cluster_monitoring;
 cluster_hadoop -- cluster_bootstrapping;
 cluster_hadoop -- cluster_HA;
 cluster_hadoop -- cluster_HUE;
-
 
 }
